@@ -12,9 +12,11 @@ pipeline {
             steps {
                 echo 'Build backend'
                 //sh 'gradle run --prefix backend'
-                //sh "./gradlew tasks"
+                dir('backend'){
+                sh "./gradlew tasks"
+                }
                 // sh "chmod +x gradlew"
-                sh "./gradlew build --stacktrace" //run a gradle task
+                //sh "./gradlew build --stacktrace" //run a gradle task
                 // step( [ $class: 'JacocoPublisher' ] )
                     }
             }      
