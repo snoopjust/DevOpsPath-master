@@ -8,23 +8,14 @@ pipeline {
                 checkout scm
             } 
         }    
-        stage('Build frontend') {
-            steps { 
-                echo 'Build frontend'
-                //nodejs('NodeJS 14.6.0') {
-                    sh 'npm install --prefix frontend'
-                    sh 'npm run build --prefix frontend'
-                //}
-            }
-        }
-                stage('Build backend') {
+        stage('Build backend') {
             steps {
                 echo 'Build backend'
                 //sh 'gradle run --prefix backend'
                 dir('backend'){
                 sh "chmod +x gradlew" //permission
                 sh "./gradlew tasks"
-                sh './gradlew run'
+                //sh './gradlew run'
                 }
                 // sh "chmod +x gradlew"
                 //sh "./gradlew build --stacktrace" //run a gradle task
@@ -40,6 +31,15 @@ pipeline {
                     allowEmptyResults: true,
                     testResults: '**/test-results/test/*.xml'
                 ) 
+            }
+        }
+        stage('Build frontend') {
+            steps { 
+                echo 'Build frontend'
+                //nodejs('NodeJS 14.6.0') {
+                    sh 'npm install --prefix frontend'
+                    sh 'npm run build --prefix frontend'
+                //}
             }
         }
     }
