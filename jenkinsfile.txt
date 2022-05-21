@@ -41,5 +41,12 @@ pipeline {
                 //}
             }
         }
+        stage('Run') {
+            steps { 
+                echo 'Run'
+                
+                    sh 'gradle run'
+            }
+        }
     }
 }
