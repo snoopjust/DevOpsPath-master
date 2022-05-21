@@ -22,7 +22,7 @@ pipeline {
                 step( [ $class: 'JacocoPublisher' ] )
                     }
             }      
-            stage('Unit and integration test') {
+        stage('Unit and integration test') {
             steps {
                 echo 'Testing..'
                 //junit '**/test-results/test/*.xml'
